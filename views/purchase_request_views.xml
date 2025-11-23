@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <!-- Action & Menu -->
+  <record id="action_purchase_request" model="ir.actions.act_window">
+    <field name="name">Purchase Requests</field>
+    <field name="res_model">purchase.request</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <menuitem id="menu_purchase_request_root"
+            name="Purchase Requests"
+            parent="purchase.menu_purchase_root"
+            action="action_purchase_request"/>
+
+  <!-- List -->
+  <record id="view_purchase_request_list" model="ir.ui.view">
+    <field name="name">purchase.request.list</field>
+    <field name="model">purchase.request</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="employee_id"/>
+        <field name="department_id"/>
+        <field name="state"/>
+      </list>
+    </field>
+  </record>
+
+  <!-- Form -->
+  <record id="view_purchase_request_form" model="ir.ui.view">
+    <field name="name">purchase.request.form</field>
+    <field name="model">purchase.request</field>
+    <field name="arch" type="xml">
+      <form string="Purchase Request">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="employee_id"/>
+            <field name="department_id"/>
+            <field name="date_request"/>
+            <field name="state" readonly="1"/>
+          </group>
+
+          <notebook>
+            <page string="Lines">
+              <field name="line_ids">
+                <list editable="bottom">
+                  <field name="product_id"/>
+                  <field name="description"/>
+                  <field name="quantity"/>
+                </list>
+              </field>
+            </page>
+          </notebook>
+
+          <footer>
+            <button name="action_send_to_procurement"
+                    type="object"
+                    string="Send to Procurement"
+                    class="btn-primary"/>
+
+            <button name="action_create_rfq"
+                    type="object"
+                    string="Create RFQ"
+                    class="btn-secondary"/>
+          </footer>
+
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_bid,purchase.bid,model_purchase_bid,,1,1,1,1
+access_purchase_bid_line,purchase.bid.line,model_purchase_bid_line,,1,1,1,1
+access_purchase_request,purchase.request,model_purchase_request,,1,1,1,1
+access_purchase_request_line,purchase.request.line,model_purchase_request_line,,1,1,1,1

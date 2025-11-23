@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Action & Menu -->
+  <record id="action_purchase_bid" model="ir.actions.act_window">
+    <field name="name">Purchase Bids</field>
+    <field name="res_model">purchase.bid</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <menuitem id="menu_purchase_bid_root"
+            name="Bids"
+            parent="purchase.menu_purchase_root"
+            action="action_purchase_bid"/>
+
+  <!-- List View -->
+  <record id="view_purchase_bid_list" model="ir.ui.view">
+    <field name="name">purchase.bid.list</field>
+    <field name="model">purchase.bid</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="order_id"/>
+        <field name="vendor_id"/>
+        <field name="state"/>
+        <field name="total"/>
+      </list>
+    </field>
+  </record>
+
+  <!-- Form View -->
+  <record id="view_purchase_bid_form" model="ir.ui.view">
+    <field name="name">purchase.bid.form</field>
+    <field name="model">purchase.bid</field>
+    <field name="arch" type="xml">
+      <form string="Purchase Bid">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="order_id"/>
+            <field name="vendor_id"/>
+            <field name="state"/>
+            <field name="note"/>
+          </group>
+          <notebook>
+            <page string="Lines">
+              <field name="bid_line_ids">
+                <list editable="bottom">
+                  <field name="product_id"/>
+                  <field name="product_qty"/>
+                  <field name="price_unit"/>
+                </list>
+              </field>
+            </page>
+          </notebook>
+          <footer>
+            <button name="action_submit" type="object" string="Submit Bid" class="btn-primary"/>
+            <button name="action_accept" type="object" string="Accept Bid" class="btn-success"/>
+            <button name="action_reject" type="object" string="Reject" class="btn-secondary"/>
+          </footer>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>
+
